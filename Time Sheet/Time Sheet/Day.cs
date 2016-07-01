@@ -31,7 +31,7 @@ namespace Time_Sheet
             return _workingHours + _sickHours + _vacationHours;
         }
 
-        public void setHours(HourType type, float hours)
+        public void SetHours(HourType type, float hours)
         {
             if (hours <= 0)
             {

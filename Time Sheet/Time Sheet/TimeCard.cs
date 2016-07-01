@@ -23,5 +23,23 @@ namespace Time_Sheet
                 StartDate.AddDays(1);
             }
         }
+
+        private Boolean SameDay(DateTime FirstDate, DateTime SecondDate)
+        {
+            return FirstDate.Year == SecondDate.Year
+                && FirstDate.Month == SecondDate.Month
+                && FirstDate.Day == SecondDate.Day;
+        }
+
+        public void SetHours(DateTime date, Day.HourType type, float hours)
+        {
+            for (int x = 0; x < 14; x++)
+            {
+                if (SameDay(date, _days[x].GetDate()))
+                {
+                    _days[x].SetHours(type, hours);
+                }
+            }
+        }
     }
 }
