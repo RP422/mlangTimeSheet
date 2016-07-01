@@ -17,11 +17,19 @@ namespace Time_Sheet
                 throw new ArgumentOutOfRangeException("StartDate", "StartDate must be a Sunday");
             }
 
-            for(int x = 0; x < 14; x++)
+            DateTime TempDate = new DateTime(StartDate.Year,
+                                             StartDate.Month,
+                                             StartDate.Day);
+            for (int x = 0; x < 14; x++)
             {
-                _days[x] = new Day(StartDate);
-                StartDate.AddDays(1);
+                _days[x] = new Day(TempDate);
+                TempDate.AddDays(1);
             }
+        }
+
+        public DateTime GetStartDate()
+        {
+            return _days[0].GetDate();
         }
 
         private Boolean SameDay(DateTime FirstDate, DateTime SecondDate)

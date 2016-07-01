@@ -11,7 +11,7 @@ namespace Time_Sheet.Tests
     [TestClass]
     public class DayTests
     {
-        private DateTime _date = new DateTime(2016, 6, 30);
+        private static DateTime _date = new DateTime(2016, 6, 30);
 
         [TestMethod]
         public void DateTest()

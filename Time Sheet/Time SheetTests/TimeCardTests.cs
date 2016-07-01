@@ -11,58 +11,72 @@ namespace Time_Sheet.Tests
     [TestClass()]
     public class TimeCardTests
     {
+        private static DateTime _startDate = new DateTime(2016, 7, 3);
+        private static DateTime _theNextFriday = new DateTime(2016, 7, 8);
+
         [TestMethod()]
         public void ValidTimeCardTest()
         {
-            Assert.Fail();
+            TimeCard Card = new TimeCard(_startDate);
+
+            Assert.AreEqual(_startDate, Card.GetStartDate());
         }
         [TestMethod()]
         public void InvalidTimeCardTest()
         {
-            Assert.Fail();
+            try
+            {
+                TimeCard Card = _theNextFriday;
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Assert.IsInstanceOfType(e, typeof(ArgumentOutOfRangeException));
+            }
         }
 
         [TestMethod()]
         public void WorkingHoursTest()
         {
-            Assert.Fail();
+            TimeCard Card = new TimeCard(_startDate);
+
+            Card.SetHours()
         }
         [TestMethod()]
         public void SickHoursTest()
         {
-            Assert.Fail();
+            TimeCard Card = new TimeCard(_startDate);
         }
         [TestMethod()]
         public void VacationHoursTest()
         {
-            Assert.Fail();
+            TimeCard Card = new TimeCard(_startDate);
         }
 
         [TestMethod()]
         public void OvertimeTest()
         {
-            Assert.Fail();
+            TimeCard Card = new TimeCard(_startDate);
         }
         [TestMethod()]
         public void ZeroOvertimeTest()
         {
-            Assert.Fail();
+            TimeCard Card = new TimeCard(_startDate);
         }
 
         [TestMethod()]
         public void GetTotalWorkingHoursTest()
         {
-            Assert.Fail();
+            TimeCard Card = new TimeCard(_startDate);
         }
         [TestMethod()]
         public void GetTotalSickHoursTest()
         {
-            Assert.Fail();
+            TimeCard Card = new TimeCard(_startDate);
         }
         [TestMethod()]
         public void GetTotalVacationHoursTest()
         {
-            Assert.Fail();
+            TimeCard Card = new TimeCard(_startDate);
         }
     }
 }
