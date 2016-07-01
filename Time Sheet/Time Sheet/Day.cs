@@ -31,7 +31,7 @@ namespace Time_Sheet
             return _workingHours + _sickHours + _vacationHours;
         }
 
-        public void set(HourType type, float hours)
+        public void setHours(HourType type, float hours)
         {
             if (hours <= 0)
             {
@@ -66,6 +66,21 @@ namespace Time_Sheet
                     _vacationHours = hours;
                     break;
             }
+        }
+
+        public float GetHours(HourType type)
+        {
+            switch (type)
+            {
+                case HourType.WORKING:
+                    return _workingHours;
+                case HourType.SICK:
+                    return _sickHours;
+                case HourType.VACATION:
+                    return _vacationHours;
+            }
+
+            throw new ArgumentException("Input received was not expected");
         }
     }
 }
