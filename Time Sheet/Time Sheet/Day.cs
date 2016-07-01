@@ -33,7 +33,7 @@ namespace Time_Sheet
 
         public void set(HourType type, float hours)
         {
-            if(hours <= 0)
+            if (hours <= 0)
             {
                 throw new ArgumentOutOfRangeException("hours", "hours must be a positive value");
             }
@@ -68,5 +68,4 @@ namespace Time_Sheet
             }
         }
     }
-
 }
