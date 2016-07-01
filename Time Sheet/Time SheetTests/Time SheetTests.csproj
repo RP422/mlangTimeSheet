@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="DayTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimeCardTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Time Sheet\Time Sheet.csproj">
