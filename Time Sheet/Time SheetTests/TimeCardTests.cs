@@ -26,7 +26,7 @@ namespace Time_Sheet.Tests
         {
             try
             {
-                TimeCard Card = _theNextFriday;
+                TimeCard Card = new TimeCard(_theNextFriday);
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -39,28 +39,58 @@ namespace Time_Sheet.Tests
         {
             TimeCard Card = new TimeCard(_startDate);
 
-            Card.SetHours()
+            Card.SetHours(_theNextFriday, Day.HourType.WORKING, 8);
+
+            Assert.AreEqual(8, Card.GetHours(_theNextFriday, Day.HourType.WORKING));
         }
         [TestMethod()]
         public void SickHoursTest()
         {
             TimeCard Card = new TimeCard(_startDate);
+
+            Card.SetHours(_theNextFriday, Day.HourType.SICK, 8);
+
+            Assert.AreEqual(8, Card.GetHours(_theNextFriday, Day.HourType.SICK));
         }
         [TestMethod()]
         public void VacationHoursTest()
         {
             TimeCard Card = new TimeCard(_startDate);
+
+            Card.SetHours(_theNextFriday, Day.HourType.VACATION, 8);
+
+            Assert.AreEqual(8, Card.GetHours(_theNextFriday, Day.HourType.VACATION));
         }
 
         [TestMethod()]
         public void OvertimeTest()
         {
             TimeCard Card = new TimeCard(_startDate);
+
+            DateTime TempDate = _startDate;
+
+            for (int x = 0; x < 14; x++)
+            {
+                Card.SetHours(TempDate, Day.HourType.WORKING, 8);
+                TempDate.AddDays(1);
+            }
+
+            Assert.AreEqual(32, Card.CalculateOvertime());
         }
         [TestMethod()]
         public void ZeroOvertimeTest()
         {
             TimeCard Card = new TimeCard(_startDate);
+
+            DateTime TempDate = _startDate;
+
+            for (int x = 0; x < 14; x++)
+            {
+                Card.SetHours(TempDate, Day.HourType.WORKING, 4);
+                TempDate.AddDays(1);
+            }
+
+            Assert.AreEqual(0, Card.CalculateOvertime());
         }
 
         [TestMethod()]

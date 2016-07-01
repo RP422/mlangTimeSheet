@@ -51,7 +51,7 @@ namespace Time_Sheet
             }
             throw new ArgumentOutOfRangeException("date", "The provided date was not found within the TimeCard");
         }
-        public float GetHours(DateTime date, Day.HourType type, float hours)
+        public float GetHours(DateTime date, Day.HourType type)
         {
             for (int x = 0; x < 14; x++)
             {
