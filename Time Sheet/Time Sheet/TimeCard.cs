@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Time_Sheet
 {
-    class TimeCard
+    public class TimeCard
     {
         private Day[] _days = new Day[14];
 

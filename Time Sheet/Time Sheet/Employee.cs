@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Time_Sheet
 {
-    class Employee
+    public class Employee
     {
     }
 }
