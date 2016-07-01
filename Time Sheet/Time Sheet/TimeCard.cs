@@ -17,13 +17,12 @@ namespace Time_Sheet
                 throw new ArgumentOutOfRangeException("StartDate", "StartDate must be a Sunday");
             }
 
-            DateTime TempDate = new DateTime(StartDate.Year,
-                                             StartDate.Month,
-                                             StartDate.Day);
+            DateTime TempDate = TrimDay(StartDate);
+
             for (int x = 0; x < 14; x++)
             {
                 _days[x] = new Day(TempDate);
-                TempDate.AddDays(1);
+                TempDate = TempDate.AddDays(1);
             }
         }
 
@@ -32,33 +31,41 @@ namespace Time_Sheet
             return _days[0].GetDate();
         }
 
-        private Boolean SameDay(DateTime FirstDate, DateTime SecondDate)
+        private DateTime TrimDay(DateTime Date)
         {
-            return FirstDate.Year == SecondDate.Year
-                && FirstDate.Month == SecondDate.Month
-                && FirstDate.Day == SecondDate.Day;
+            return new DateTime(Date.Year, Date.Month, Date.Day);
         }
 
         public void SetHours(DateTime date, Day.HourType type, float hours)
         {
+            Boolean SomethingSet = false;
+            DateTime TempDate = TrimDay(date);
+
             for (int x = 0; x < 14; x++)
             {
-                if (SameDay(date, _days[x].GetDate()))
+                if (TempDate.Equals(_days[x].GetDate()))
                 {
                     _days[x].SetHours(type, hours);
-                    break;
+                    SomethingSet = true;
                 }
+                TempDate.AddDays(1);
             }
-            throw new ArgumentOutOfRangeException("date", "The provided date was not found within the TimeCard");
+            if (!SomethingSet)
+            {
+                throw new ArgumentOutOfRangeException("date", "The provided date was not found within the TimeCard");
+            }
         }
         public float GetHours(DateTime date, Day.HourType type)
         {
+            DateTime TempDate = TrimDay(date);
+
             for (int x = 0; x < 14; x++)
             {
-                if (SameDay(date, _days[x].GetDate()))
+                if (TempDate.Equals(_days[x].GetDate()))
                 {
                     return _days[x].GetHours(type);
                 }
+                TempDate.AddDays(1);
             }
             throw new ArgumentOutOfRangeException("date", "The provided date was not found within the TimeCard");
         }

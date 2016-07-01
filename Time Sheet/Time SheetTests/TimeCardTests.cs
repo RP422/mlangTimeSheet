@@ -72,7 +72,7 @@ namespace Time_Sheet.Tests
             for (int x = 0; x < 14; x++)
             {
                 Card.SetHours(TempDate, Day.HourType.WORKING, 8);
-                TempDate.AddDays(1);
+                TempDate = TempDate.AddDays(1);
             }
 
             Assert.AreEqual(32, Card.CalculateOvertime());
@@ -94,19 +94,23 @@ namespace Time_Sheet.Tests
         }
 
         [TestMethod()]
-        public void GetTotalWorkingHoursTest()
+        public void GetTotalHoursTest()
         {
             TimeCard Card = new TimeCard(_startDate);
-        }
-        [TestMethod()]
-        public void GetTotalSickHoursTest()
-        {
-            TimeCard Card = new TimeCard(_startDate);
-        }
-        [TestMethod()]
-        public void GetTotalVacationHoursTest()
-        {
-            TimeCard Card = new TimeCard(_startDate);
+
+            DateTime TempDate = _startDate;
+
+            for (int x = 0; x < 14; x++)
+            {
+                Card.SetHours(TempDate, Day.HourType.WORKING, 3);
+                Card.SetHours(TempDate, Day.HourType.SICK, 4);
+                Card.SetHours(TempDate, Day.HourType.VACATION, 5);
+                TempDate = TempDate.AddDays(1);
+            }
+
+            Assert.AreEqual(42, Card.GetTotalHours(Day.HourType.WORKING));
+            Assert.AreEqual(56, Card.GetTotalHours(Day.HourType.SICK));
+            Assert.AreEqual(70, Card.GetTotalHours(Day.HourType.VACATION));
         }
     }
 }
