@@ -39,27 +39,27 @@ namespace Time_Sheet.Tests
         {
             TimeCard Card = new TimeCard(_startDate);
 
-            Card.SetHours(_theNextFriday, Day.HourType.WORKING, 8);
+            Card.SetHours(_theNextFriday, HourType.WORKING, 8);
 
-            Assert.AreEqual(8, Card.GetHours(_theNextFriday, Day.HourType.WORKING));
+            Assert.AreEqual(8, Card.GetHours(_theNextFriday, HourType.WORKING));
         }
         [TestMethod()]
         public void SickHoursTest()
         {
             TimeCard Card = new TimeCard(_startDate);
 
-            Card.SetHours(_theNextFriday, Day.HourType.SICK, 8);
+            Card.SetHours(_theNextFriday, HourType.SICK, 8);
 
-            Assert.AreEqual(8, Card.GetHours(_theNextFriday, Day.HourType.SICK));
+            Assert.AreEqual(8, Card.GetHours(_theNextFriday, HourType.SICK));
         }
         [TestMethod()]
         public void VacationHoursTest()
         {
             TimeCard Card = new TimeCard(_startDate);
 
-            Card.SetHours(_theNextFriday, Day.HourType.VACATION, 8);
+            Card.SetHours(_theNextFriday, HourType.VACATION, 8);
 
-            Assert.AreEqual(8, Card.GetHours(_theNextFriday, Day.HourType.VACATION));
+            Assert.AreEqual(8, Card.GetHours(_theNextFriday, HourType.VACATION));
         }
 
         [TestMethod()]
@@ -71,7 +71,7 @@ namespace Time_Sheet.Tests
 
             for (int x = 0; x < 14; x++)
             {
-                Card.SetHours(TempDate, Day.HourType.WORKING, 8);
+                Card.SetHours(TempDate, HourType.WORKING, 8);
                 TempDate = TempDate.AddDays(1);
             }
 
@@ -86,7 +86,7 @@ namespace Time_Sheet.Tests
 
             for (int x = 0; x < 14; x++)
             {
-                Card.SetHours(TempDate, Day.HourType.WORKING, 4);
+                Card.SetHours(TempDate, HourType.WORKING, 4);
                 TempDate.AddDays(1);
             }
 
@@ -102,15 +102,15 @@ namespace Time_Sheet.Tests
 
             for (int x = 0; x < 14; x++)
             {
-                Card.SetHours(TempDate, Day.HourType.WORKING, 3);
-                Card.SetHours(TempDate, Day.HourType.SICK, 4);
-                Card.SetHours(TempDate, Day.HourType.VACATION, 5);
+                Card.SetHours(TempDate, HourType.WORKING, 3);
+                Card.SetHours(TempDate, HourType.SICK, 4);
+                Card.SetHours(TempDate, HourType.VACATION, 5);
                 TempDate = TempDate.AddDays(1);
             }
 
-            Assert.AreEqual(42, Card.GetTotalHours(Day.HourType.WORKING));
-            Assert.AreEqual(56, Card.GetTotalHours(Day.HourType.SICK));
-            Assert.AreEqual(70, Card.GetTotalHours(Day.HourType.VACATION));
+            Assert.AreEqual(42, Card.GetTotalHours(HourType.WORKING));
+            Assert.AreEqual(56, Card.GetTotalHours(HourType.SICK));
+            Assert.AreEqual(70, Card.GetTotalHours(HourType.VACATION));
         }
     }
 }

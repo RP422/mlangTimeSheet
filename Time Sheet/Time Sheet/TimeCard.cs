@@ -36,7 +36,7 @@ namespace Time_Sheet
             return new DateTime(Date.Year, Date.Month, Date.Day);
         }
 
-        public void SetHours(DateTime date, Day.HourType type, float hours)
+        public void SetHours(DateTime date, HourType type, float hours)
         {
             Boolean SomethingSet = false;
             DateTime TempDate = TrimDay(date);
@@ -55,7 +55,7 @@ namespace Time_Sheet
                 throw new ArgumentOutOfRangeException("date", "The provided date was not found within the TimeCard");
             }
         }
-        public float GetHours(DateTime date, Day.HourType type)
+        public float GetHours(DateTime date, HourType type)
         {
             DateTime TempDate = TrimDay(date);
 
@@ -77,7 +77,7 @@ namespace Time_Sheet
 
             for (int x = 0; x < 7; x++)
             {
-                RegularHours += _days[x].GetHours(Day.HourType.WORKING);
+                RegularHours += _days[x].GetHours(HourType.WORKING);
             }
             if(RegularHours > 40)
             {
@@ -87,7 +87,7 @@ namespace Time_Sheet
             RegularHours = 0;
             for (int x = 7; x < 14; x++)
             {
-                RegularHours += _days[x].GetHours(Day.HourType.WORKING);
+                RegularHours += _days[x].GetHours(HourType.WORKING);
             }
             if (RegularHours > 40)
             {
@@ -97,7 +97,7 @@ namespace Time_Sheet
             return OvertimeHours;
         }
 
-        public float GetTotalHours(Day.HourType type)
+        public float GetTotalHours(HourType type)
         {
             float RunningTotal = 0;
 

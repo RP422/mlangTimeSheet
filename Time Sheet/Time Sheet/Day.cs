@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Time_Sheet
 {
+    public enum HourType { WORKING, SICK, VACATION }
+
     public class Day
     {
         private float _workingHours = 0;
         private float _sickHours = 0;
         private float _vacationHours = 0;
-
-        public enum HourType { WORKING, SICK, VACATION }
-
+        
         private DateTime _date { get; set; }
 
         public Day(DateTime date)

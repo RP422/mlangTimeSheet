@@ -26,27 +26,27 @@ namespace Time_Sheet.Tests
         {
             Day d = new Day(_date);
 
-            d.SetHours(Day.HourType.WORKING, 8);
+            d.SetHours(HourType.WORKING, 8);
 
-            Assert.AreEqual(8, d.GetHours(Day.HourType.WORKING));
+            Assert.AreEqual(8, d.GetHours(HourType.WORKING));
         }
         [TestMethod]
         public void SickTest()
         {
             Day d = new Day(_date);
 
-            d.SetHours(Day.HourType.SICK, 8);
+            d.SetHours(HourType.SICK, 8);
 
-            Assert.AreEqual(8, d.GetHours(Day.HourType.SICK));
+            Assert.AreEqual(8, d.GetHours(HourType.SICK));
         }
         [TestMethod]
         public void VacationTest()
         {
             Day d = new Day(_date);
 
-            d.SetHours(Day.HourType.VACATION, 8);
+            d.SetHours(HourType.VACATION, 8);
 
-            Assert.AreEqual(8, d.GetHours(Day.HourType.VACATION));
+            Assert.AreEqual(8, d.GetHours(HourType.VACATION));
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace Time_Sheet.Tests
 
             try
             {
-                d.SetHours(Day.HourType.WORKING, 0);
+                d.SetHours(HourType.WORKING, 0);
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -70,7 +70,7 @@ namespace Time_Sheet.Tests
 
             try
             {
-                d.SetHours(Day.HourType.WORKING, -8);
+                d.SetHours(HourType.WORKING, -8);
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -82,9 +82,9 @@ namespace Time_Sheet.Tests
         {
             Day d = new Day(_date);
             
-            d.SetHours(Day.HourType.WORKING, 8);
-            d.SetHours(Day.HourType.SICK, 8);
-            d.SetHours(Day.HourType.VACATION, 8);
+            d.SetHours(HourType.WORKING, 8);
+            d.SetHours(HourType.SICK, 8);
+            d.SetHours(HourType.VACATION, 8);
 
             Assert.AreEqual(24, d.GetTotalHours());
         }
@@ -95,9 +95,9 @@ namespace Time_Sheet.Tests
 
             try
             {
-                d.SetHours(Day.HourType.WORKING, 9);
-                d.SetHours(Day.HourType.SICK, 8);
-                d.SetHours(Day.HourType.VACATION, 8);
+                d.SetHours(HourType.WORKING, 9);
+                d.SetHours(HourType.SICK, 8);
+                d.SetHours(HourType.VACATION, 8);
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -110,9 +110,9 @@ namespace Time_Sheet.Tests
         {
             Day d = new Day(_date);
 
-            d.SetHours(Day.HourType.WORKING, 8.25f);
+            d.SetHours(HourType.WORKING, 8.25f);
 
-            Assert.AreEqual(8.25f, d.GetHours(Day.HourType.WORKING));
+            Assert.AreEqual(8.25f, d.GetHours(HourType.WORKING));
         }
         [TestMethod]
         public void EighthHourTest()
@@ -121,7 +121,7 @@ namespace Time_Sheet.Tests
 
             try
             {
-                d.SetHours(Day.HourType.WORKING, 8.125f);
+                d.SetHours(HourType.WORKING, 8.125f);
             }
             catch (ArgumentOutOfRangeException e)
             {
